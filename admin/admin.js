@@ -48,7 +48,8 @@ const TABS = {
       t('title', 'Title', { required: true }), t('subtitle', 'Short description'),
       { type: 'select', key: 'category', label: 'Category', options: () => data.portfolio.categories },
       t('url', 'Link', { url: true, help: 'Leave empty if there is no public link.' }), img('image', 'Card image'),
-      select('fit', 'Image style', ['cover', 'contain']), check('wide', 'Wide card (two columns)'),
+      { type: 'select', key: 'fit', label: 'Image style', options: ['logo', 'cover', 'contain'], help: 'logo = logo on a white plate. cover = screenshot filling the card. contain = whole image, no cropping.' },
+      { type: 'color', key: 'color', label: 'Brand colour (logo style)' }, check('wide', 'Wide card (two columns)'),
       list('gallery', 'Screenshots (opens a gallery)', [img('image', 'Screenshot', { max: 1200 }), t('alt', 'Describe the screenshot')], 'alt', { uploadMany: true }),
     ], 'title', { top: true }),
   ],
@@ -321,7 +322,7 @@ function control(f, obj, onTitle) {
   }
   const input = f.type === 'area'
     ? el('textarea', { value: value ?? '', className: f.big ? 'big' : '' })
-    : el('input', { type: { number: 'number', date: 'date' }[f.type] || 'text', value: value ?? '' });
+    : el('input', { type: { number: 'number', date: 'date', color: 'color' }[f.type] || 'text', value: value || (f.type === 'color' ? '#f6c453' : value ?? '') });
   const counter = f.count ? el('p', { className: 'help' }) : null;
   const count = () => { if (counter) counter.textContent = `${input.value.length} of about ${f.count} characters`; };
   count();
@@ -336,7 +337,7 @@ function blank(f) {
   const item = {};
   for (const x of f.fields) {
     const options = typeof x.options === 'function' ? x.options() : x.options;
-    const value = { check: false, list: [], strings: [], number: 0, select: options?.[0] ?? '', date: new Date().toISOString().slice(0, 10) }[x.type] ?? '';
+    const value = { check: false, list: [], strings: [], number: 0, color: '#f6c453', select: options?.[0] ?? '', date: new Date().toISOString().slice(0, 10) }[x.type] ?? '';
     set(item, x.key, value);
   }
   return item;

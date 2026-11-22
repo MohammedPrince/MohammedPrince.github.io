@@ -39,6 +39,8 @@
     --dash: #3a3a42;
     --tile: #1d1d1e;
     --tile2: #242426;
+    --lg1: 30%;
+    --lg2: 16%;
     --field: rgba(0, 0, 0, .35);
     --shadow: rgba(0, 0, 0, .6);
 }
@@ -66,6 +68,8 @@
     --dash: #c9c5bb;
     --tile: #f1efea;
     --tile2: #e8e5de;
+    --lg1: 26%;
+    --lg2: 14%;
     --field: #ffffff;
     --shadow: rgba(60, 50, 20, .18);
 }
@@ -93,6 +97,8 @@
         --dash: #c9c5bb;
         --tile: #f1efea;
         --tile2: #e8e5de;
+        --lg1: 26%;
+        --lg2: 14%;
         --field: #ffffff;
         --shadow: rgba(60, 50, 20, .18);
     }
@@ -916,6 +922,60 @@ h2 {
     object-position: center
 }
 
+/* logo cards: a white plate keeps every logo readable in both themes; --c is the brand colour */
+.lg {
+    --c: var(--gold);
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--c) var(--lg1), transparent), transparent 72%), linear-gradient(135deg, color-mix(in srgb, var(--c) var(--lg2), var(--tile)), var(--tile))
+}
+
+.lg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c) 45%, transparent) 1px, transparent 1.5px) center / 18px 18px;
+    opacity: .35;
+    -webkit-mask: radial-gradient(circle, transparent 25%, #000);
+    mask: radial-gradient(circle, transparent 25%, #000)
+}
+
+.pl {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 150px;
+    height: 104px;
+    margin-top: 26px;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 14px 34px color-mix(in srgb, var(--c) 34%, transparent);
+    transition: transform .25s
+}
+
+.pj:not(.wide) .lg {
+    height: 178px
+}
+
+.wide .pl {
+    width: 260px;
+    margin-top: 0;
+    height: 168px;
+    padding: 24px 30px;
+    border-radius: 30px
+}
+
+.act:hover .pl {
+    transform: scale(1.05)
+}
+
+.th.lg .pl img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center
+}
+
 .th .ph {
     font-size: 34px;
     font-weight: 800;
@@ -1603,6 +1663,15 @@ footer a:hover {
     .wide .th,
     .wide .th img {
         height: 180px
+    }
+
+    .pl,
+    .wide .pl {
+        width: 190px;
+        height: 112px;
+        margin-top: 26px;
+        padding: 15px 22px;
+        border-radius: 24px
     }
 
     .hire svg {

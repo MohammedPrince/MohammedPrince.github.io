@@ -183,14 +183,18 @@ function projectCard(p, i, base) {
   const title = gallery
     ? `<button type="button" class="hit" data-gallery="${id}" aria-haspopup="dialog">${esc(p.title)}</button>`
     : url ? `<a class="hit" href="${esc(url)}"${ext(url)}>${esc(p.title)}</a>` : esc(p.title);
-  const alt = `${p.title} — ${p.subtitle}`;
-  const thumb = p.image
+  const alt = p.fit === 'logo' ? `${p.title} logo` : `${p.title} — ${p.subtitle}`;
+  const logo = p.image && p.fit === 'logo';
+  const color = logo && /^#[0-9a-f]{6}$/i.test(p.color || '') ? ` style="--c:${p.color}"` : '';
+  const thumb = logo
+    ? `<span class="pl"><img src="${asset(p.image, base)}" alt="${esc(alt)}" width="320" height="200" loading="lazy" decoding="async"></span>`
+    : p.image
     ? `<img src="${asset(p.image, base)}" alt="${esc(alt)}" width="${p.wide ? 1100 : 640}" height="${p.wide ? 482 : 360}" loading="lazy" decoding="async"${p.fit === 'contain' ? ' class="fit"' : ''}>`
     : `<span class="ph" aria-hidden="true">${esc(p.title.slice(0, 2).toUpperCase())}</span>`;
   const dialog = gallery ? `
 <dialog id="${id}" aria-label="${esc(p.title)} screenshots"><div class="gh"><h3>${esc(p.title)}</h3><div><button type="button" data-step="-1" aria-label="Scroll back">←</button><button type="button" data-step="1" aria-label="Scroll forward">→</button><button type="button" data-close aria-label="Close">✕</button></div></div>
 <div class="gs" tabindex="0" role="group" aria-label="Screenshots">${p.gallery.map((g) => `<img src="${asset(g.image, base)}" alt="${esc(g.alt)}" width="540" height="960" loading="lazy" decoding="async">`).join('')}</div>${url ? `<a class="back" href="${esc(url)}"${ext(url)}>Visit project ↗</a>` : ''}</dialog>` : '';
-  return `<li class="pj${p.wide ? ' wide' : ''}${url || gallery ? ' act' : ''}" data-cat="${esc(p.category)}"><div class="th">${thumb}<span class="t">${esc(p.category)}</span></div><div class="bd"><div><h3>${title}</h3><p>${esc(p.subtitle)}</p></div>${url || gallery ? `<span class="go" aria-hidden="true">${gallery ? '⤢' : '↗'}</span>` : ''}</div>${dialog}</li>`;
+  return `<li class="pj${p.wide ? ' wide' : ''}${url || gallery ? ' act' : ''}" data-cat="${esc(p.category)}"><div class="th${logo ? ' lg' : ''}"${color}>${thumb}<span class="t">${esc(p.category)}</span></div><div class="bd"><div><h3>${title}</h3><p>${esc(p.subtitle)}</p></div>${url || gallery ? `<span class="go" aria-hidden="true">${gallery ? '⤢' : '↗'}</span>` : ''}</div>${dialog}</li>`;
 }
 
 const timeline = (items) => `<ol class="tl">${items.map((t) => `<li class="ti${t.current ? ' now' : ''}"><span class="y">${esc(t.period)}</span><h4>${esc(t.title)}</h4><p>${esc(t.text)}</p></li>`).join('')}</ol>`;
