@@ -104,13 +104,15 @@ const niceDate = (s) => {
   return Number.isNaN(+dt) ? esc(s) : dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 };
 
+const theme = (d) => (['light', 'auto'].includes(d.site.theme) ? d.site.theme : 'dark');
+
 function page(d, css, { title, description, path, base, image, type = 'website', ld, body, noindex }) {
   const url = siteUrl(d) + path;
   const img = new URL(image || d.site.ogImage, siteUrl(d)).href;
   const csp = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action https://api.whatsapp.com"
     + (counterUrl(d) ? `; connect-src ${new URL(counterUrl(d)).origin}` : '');
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="${theme(d)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -121,8 +123,9 @@ function page(d, css, { title, description, path, base, image, type = 'website',
 ${noindex ? '<meta name="robots" content="noindex">' : `<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${esc(url)}">`}
 <meta name="author" content="${esc(d.profile.name)}">
-<meta name="theme-color" content="#0b0b0d">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="${theme(d) === 'light' ? '#f7f6f3' : '#0b0b0d'}">
+<meta name="color-scheme" content="dark light">
+<script src="${base}assets/js/theme.js"></script>
 ${d.site.googleVerification ? `<meta name="google-site-verification" content="${esc(d.site.googleVerification)}">\n` : ''}<meta property="og:type" content="${type}">
 <meta property="og:site_name" content="${esc(d.profile.name)}">
 <meta property="og:title" content="${esc(title)}">
@@ -137,7 +140,7 @@ ${d.site.googleVerification ? `<meta name="google-site-verification" content="${
 <link rel="apple-touch-icon" href="${base}assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="${base}site.webmanifest">
 <style>${minifyCss(css).replaceAll('%BASE%', base)}</style>
-<noscript><style>.clamp{display:block!important}.more,.filters,.alt{display:none!important}</style></noscript>
+<noscript><style>.clamp{display:block!important}.more,.filters,.alt,.theme{display:none!important}</style></noscript>
 <script src="${base}assets/js/site.js" type="module"></script>
 ${ld ? `<script type="application/ld+json">${json(ld)}</script>\n` : ''}</head>
 <body>
@@ -156,9 +159,11 @@ function header(d, home, active) {
   return `<header class="nav"><div class="w">
 <a class="logo" href="${home || '#about'}" aria-label="${esc(d.profile.name)} — home"><i aria-hidden="true">${esc(d.profile.initials)}</i><span>${esc(d.profile.name)}</span></a>
 <nav class="links" id="menu" aria-label="Main">${NAV.map(([id, label]) => `<a href="${home}#${id}"${id === active ? ' class="on" aria-current="true"' : ''}>${label}</a>`).join('')}</nav>
+<div class="acts">
+<button class="theme" type="button" aria-label="Switch between light and dark mode"><svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z"/></svg><svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2L19 19M19 5l-1.8 1.8M6.8 17.2L5 19"/></svg></button>
 <a class="hire" href="${esc(waLink(d))}" target="_blank" rel="noopener">Let's talk ${ARROW}</a>
 <button class="menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">${line('<path d="M4 7h16M4 12h16M4 17h16"/>', 20)}</button>
-</div></header>`;
+</div></div></header>`;
 }
 
 function footer(d, home) {

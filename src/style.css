@@ -16,15 +16,86 @@
 }
 
 :root {
+    color-scheme: dark;
     --bg: #0b0b0d;
     --s1: #131316;
     --s2: #1a1a1e;
     --line: #26262c;
     --tx: #ededf0;
+    --tx2: #d3d3d9;
     --mu: #9a9aa6;
     --gold: #f6c453;
     --gold2: #ffdf8f;
-    --golddim: rgba(246, 196, 83, .12)
+    --golddim: rgba(246, 196, 83, .12);
+    --accent: #f6c453;
+    --h1: #f6c453;
+    --h2: #ffdf8f;
+    --nav: rgba(11, 11, 13, .85);
+    --glow: rgba(246, 196, 83, .16);
+    --glow2: rgba(246, 196, 83, .22);
+    --warm: #2a2210;
+    --warmline: #4a3c1a;
+    --warmend: #141416;
+    --dash: #3a3a42;
+    --tile: #1d1d1e;
+    --tile2: #242426;
+    --field: rgba(0, 0, 0, .35);
+    --shadow: rgba(0, 0, 0, .6);
+}
+
+/* Light colours: chosen by the visitor, or by the system when the default theme is "auto" */
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f7f6f3;
+    --s1: #ffffff;
+    --s2: #f0eee9;
+    --line: #e2dfd8;
+    --tx: #17161a;
+    --tx2: #3b3a42;
+    --mu: #5f5e68;
+    --golddim: rgba(214, 150, 20, .16);
+    --accent: #855600;
+    --h1: #a86500;
+    --h2: #c27f00;
+    --nav: rgba(250, 249, 246, .88);
+    --glow: rgba(246, 196, 83, .38);
+    --glow2: rgba(246, 196, 83, .4);
+    --warm: #fff0cb;
+    --warmline: #ecd49a;
+    --warmend: #ffffff;
+    --dash: #c9c5bb;
+    --tile: #f1efea;
+    --tile2: #e8e5de;
+    --field: #ffffff;
+    --shadow: rgba(60, 50, 20, .18);
+}
+
+@media(prefers-color-scheme:light) {
+    :root[data-theme="auto"] {
+        color-scheme: light;
+        --bg: #f7f6f3;
+        --s1: #ffffff;
+        --s2: #f0eee9;
+        --line: #e2dfd8;
+        --tx: #17161a;
+        --tx2: #3b3a42;
+        --mu: #5f5e68;
+        --golddim: rgba(214, 150, 20, .16);
+        --accent: #855600;
+        --h1: #a86500;
+        --h2: #c27f00;
+        --nav: rgba(250, 249, 246, .88);
+        --glow: rgba(246, 196, 83, .38);
+        --glow2: rgba(246, 196, 83, .4);
+        --warm: #fff0cb;
+        --warmline: #ecd49a;
+        --warmend: #ffffff;
+        --dash: #c9c5bb;
+        --tile: #f1efea;
+        --tile2: #e8e5de;
+        --field: #ffffff;
+        --shadow: rgba(60, 50, 20, .18);
+    }
 }
 
 * {
@@ -70,7 +141,7 @@ ol {
 }
 
 :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--accent);
     outline-offset: 3px
 }
 
@@ -101,7 +172,7 @@ ol {
 }
 
 .g {
-    color: var(--gold)
+    color: var(--accent)
 }
 
 svg {
@@ -113,7 +184,7 @@ svg {
     position: sticky;
     top: 0;
     z-index: 9;
-    background: rgba(11, 11, 13, .85);
+    background: var(--nav);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line)
 }
@@ -171,7 +242,7 @@ svg {
 
 .links a.on {
     background: var(--s2);
-    color: var(--gold);
+    color: var(--accent);
     box-shadow: inset 0 0 0 1px var(--line)
 }
 
@@ -188,14 +259,48 @@ svg {
     white-space: nowrap
 }
 
+.acts {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.theme .moon,
+[data-theme="light"] .theme .sun {
+    display: none
+}
+
+[data-theme="light"] .theme .moon {
+    display: block
+}
+
+@media(prefers-color-scheme:light) {
+    [data-theme="auto"] .theme .sun {
+        display: none
+    }
+
+    [data-theme="auto"] .theme .moon {
+        display: block
+    }
+}
+
+.theme:hover {
+    border-color: var(--accent)
+}
+
+.theme,
 .menu {
-    display: none;
+    display: grid;
     width: 44px;
     height: 44px;
     border-radius: 12px;
     border: 1px solid var(--line);
     background: var(--s1);
     place-items: center
+}
+
+.menu {
+    display: none
 }
 
 /* hero */
@@ -212,7 +317,7 @@ svg {
     height: 720px;
     right: -160px;
     top: -260px;
-    background: radial-gradient(circle, rgba(246, 196, 83, .16), transparent 65%)
+    background: radial-gradient(circle, var(--glow), transparent 65%)
 }
 
 .hero::after {
@@ -250,7 +355,7 @@ svg {
     border-radius: 99px;
     font-size: 13px;
     font-weight: 600;
-    color: #cfcfd6
+    color: var(--tx2)
 }
 
 .badge b {
@@ -271,7 +376,7 @@ h1 {
 }
 
 h1 span {
-    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    background: linear-gradient(90deg, var(--h1), var(--h2));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent
@@ -320,7 +425,7 @@ h1 span {
 
 .b2:hover,
 .soc a:hover {
-    border-color: var(--gold)
+    border-color: var(--accent)
 }
 
 .soc {
@@ -338,7 +443,7 @@ h1 span {
     background: var(--s1);
     display: grid;
     place-items: center;
-    color: #cfcfd6;
+    color: var(--tx2);
     transition: border-color .15s
 }
 
@@ -390,7 +495,7 @@ h1 span {
     max-width: calc(100% - 28px);
     white-space: nowrap;
     background: rgba(0, 0, 0, .72);
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 255, 255, .16);
     font-size: 13px;
     font-weight: 600;
     padding: 7px 14px;
@@ -431,11 +536,11 @@ h1 span {
 }
 
 .ci a:hover {
-    border-color: var(--gold)
+    border-color: var(--accent)
 }
 
 .ci svg {
-    color: var(--gold)
+    color: var(--accent)
 }
 
 .ci span {
@@ -481,7 +586,7 @@ h1 span {
 
 .stats em {
     font-style: normal;
-    color: var(--gold)
+    color: var(--accent)
 }
 
 .stats dt {
@@ -496,7 +601,7 @@ section {
 }
 
 .k {
-    color: var(--gold);
+    color: var(--accent);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: .14em;
@@ -510,7 +615,7 @@ section {
     content: "";
     width: 24px;
     height: 2px;
-    background: var(--gold)
+    background: var(--accent)
 }
 
 h2 {
@@ -556,8 +661,8 @@ h2 {
 }
 
 .sc.f {
-    background: linear-gradient(160deg, #2a2210, var(--s1) 70%);
-    border-color: #4a3c1a
+    background: linear-gradient(160deg, var(--warm), var(--s1) 70%);
+    border-color: var(--warmline)
 }
 
 .ic {
@@ -565,7 +670,7 @@ h2 {
     height: 52px;
     border-radius: 14px;
     background: var(--golddim);
-    color: var(--gold);
+    color: var(--accent);
     display: grid;
     place-items: center
 }
@@ -637,7 +742,7 @@ h2 {
     height: 40px;
     border-radius: 11px;
     background: var(--golddim);
-    color: var(--gold);
+    color: var(--accent);
     display: grid;
     place-items: center
 }
@@ -675,11 +780,11 @@ h2 {
     height: 12px;
     border-radius: 50%;
     background: var(--bg);
-    border: 2px solid var(--gold)
+    border: 2px solid var(--accent)
 }
 
 .ti.now::before {
-    background: var(--gold);
+    background: var(--accent);
     box-shadow: 0 0 0 5px var(--golddim)
 }
 
@@ -687,7 +792,7 @@ h2 {
     display: inline-block;
     font-size: 12px;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--accent);
     background: var(--golddim);
     padding: 4px 10px;
     border-radius: 7px
@@ -712,7 +817,7 @@ h2 {
     align-items: center;
     gap: 12px;
     background: var(--bg);
-    border: 1px dashed #3a3a42;
+    border: 1px dashed var(--dash);
     border-radius: 14px;
     padding: 16px 18px;
     font-size: 14px;
@@ -720,11 +825,11 @@ h2 {
 }
 
 .cv:hover {
-    border-color: var(--gold)
+    border-color: var(--accent)
 }
 
 .cv b {
-    color: var(--gold);
+    color: var(--accent);
     font-weight: 700
 }
 
@@ -783,7 +888,7 @@ h2 {
 }
 
 .pj.act:hover {
-    border-color: #4a3c1a;
+    border-color: var(--warmline);
     transform: translateY(-3px)
 }
 
@@ -793,7 +898,7 @@ h2 {
     display: grid;
     place-items: center;
     position: relative;
-    background: #1d1d1e;
+    background: var(--tile);
     overflow: hidden
 }
 
@@ -814,7 +919,7 @@ h2 {
 .th .ph {
     font-size: 34px;
     font-weight: 800;
-    color: var(--gold);
+    color: var(--accent);
     opacity: .85
 }
 
@@ -825,7 +930,7 @@ h2 {
     font-size: 11px;
     font-weight: 700;
     background: rgba(0, 0, 0, .72);
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 255, 255, .16);
     padding: 4px 9px;
     border-radius: 7px;
     color: #eee
@@ -870,7 +975,7 @@ h2 {
 }
 
 .hit:focus-visible::after {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--accent);
     outline-offset: -2px
 }
 
@@ -882,7 +987,7 @@ h2 {
     border: 1px solid var(--line);
     display: grid;
     place-items: center;
-    color: var(--gold)
+    color: var(--accent)
 }
 
 /* gallery */
@@ -927,7 +1032,7 @@ dialog::backdrop {
     border-radius: 12px;
     display: grid;
     place-items: center;
-    color: var(--gold);
+    color: var(--accent);
     font-size: 18px
 }
 
@@ -937,7 +1042,7 @@ dialog::backdrop {
     overflow-x: auto;
     scroll-snap-type: x proximity;
     padding-bottom: 12px;
-    scrollbar-color: #3a3a42 transparent
+    scrollbar-color: var(--dash) transparent
 }
 
 .gs img {
@@ -980,7 +1085,7 @@ dialog::backdrop {
 .rq blockquote {
     font-size: 17px;
     line-height: 1.7;
-    color: #d6d6dc;
+    color: var(--tx2);
     position: relative;
     white-space: pre-line
 }
@@ -994,7 +1099,7 @@ dialog::backdrop {
 }
 
 .more {
-    color: var(--gold);
+    color: var(--accent);
     font-size: 14px;
     font-weight: 700;
     padding: 10px 0;
@@ -1064,7 +1169,7 @@ dialog::backdrop {
 }
 
 .cl li {
-    background: #1d1d1e
+    background: var(--tile)
 }
 
 .cl li>* {
@@ -1082,7 +1187,7 @@ dialog::backdrop {
 }
 
 .cl a:hover {
-    background: #242426
+    background: var(--tile2)
 }
 
 /* blog */
@@ -1099,7 +1204,7 @@ dialog::backdrop {
 }
 
 .bl time {
-    color: var(--gold);
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700
 }
@@ -1114,7 +1219,7 @@ dialog::backdrop {
 }
 
 .soon {
-    border: 1px dashed #3a3a42;
+    border: 1px dashed var(--dash);
     border-radius: 22px;
     padding: 40px;
     text-align: center;
@@ -1133,7 +1238,7 @@ dialog::backdrop {
 }
 
 .back {
-    color: var(--gold);
+    color: var(--accent);
     font-weight: 700;
     font-size: 14px;
     display: inline-block;
@@ -1157,7 +1262,7 @@ dialog::backdrop {
     margin-top: 34px;
     font-size: 17px;
     line-height: 1.8;
-    color: #d6d6dc
+    color: var(--tx2)
 }
 
 .prose>*+* {
@@ -1177,7 +1282,7 @@ dialog::backdrop {
 }
 
 .prose a {
-    color: var(--gold);
+    color: var(--accent);
     text-decoration: underline
 }
 
@@ -1220,7 +1325,7 @@ dialog::backdrop {
 }
 
 .prose blockquote {
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid var(--accent);
     padding-left: 18px;
     color: var(--mu)
 }
@@ -1228,8 +1333,8 @@ dialog::backdrop {
 /* contact */
 .ct {
     margin-top: 100px;
-    background: linear-gradient(135deg, #2a2210, #141416 60%);
-    border: 1px solid #4a3c1a;
+    background: linear-gradient(135deg, var(--warm), var(--warmend) 60%);
+    border: 1px solid var(--warmline);
     border-radius: 30px;
     padding: 60px;
     display: grid;
@@ -1247,7 +1352,7 @@ dialog::backdrop {
     height: 420px;
     right: -120px;
     bottom: -200px;
-    background: radial-gradient(circle, rgba(246, 196, 83, .22), transparent 65%);
+    background: radial-gradient(circle, var(--glow2), transparent 65%);
     pointer-events: none
 }
 
@@ -1276,8 +1381,8 @@ dialog::backdrop {
 .form input,
 .form textarea {
     width: 100%;
-    background: rgba(0, 0, 0, .35);
-    border: 1px solid #3a3a42;
+    background: var(--field);
+    border: 1px solid var(--dash);
     border-radius: 12px;
     padding: 15px 16px;
     font-size: 16px
@@ -1290,7 +1395,7 @@ dialog::backdrop {
 }
 
 .form ::placeholder {
-    color: #9a9aa6;
+    color: var(--mu);
     opacity: 1
 }
 
@@ -1306,7 +1411,7 @@ dialog::backdrop {
 }
 
 .alt button {
-    color: var(--gold);
+    color: var(--accent);
     font-weight: 700;
     text-decoration: underline;
     padding: 6px
@@ -1350,11 +1455,11 @@ footer li a {
 }
 
 footer a:hover {
-    color: var(--gold)
+    color: var(--accent)
 }
 
 .cnt b {
-    color: var(--gold)
+    color: var(--accent)
 }
 
 /* responsive */
@@ -1383,7 +1488,7 @@ footer a:hover {
         display: grid
     }
 
-    .hire {
+    .acts {
         margin-left: auto
     }
 
@@ -1394,7 +1499,7 @@ footer a:hover {
         left: 16px;
         right: 16px;
         flex-direction: column;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, .6)
+        box-shadow: 0 24px 60px var(--shadow)
     }
 
     .links.open {
@@ -1505,12 +1610,37 @@ footer a:hover {
     }
 
     .hire {
-        padding: 12px 14px
+        padding: 12px;
+        font-size: 13px
     }
 
     .logo {
-        font-size: 15px;
-        gap: 9px
+        font-size: 14px;
+        gap: 8px
+    }
+
+    .nav .w {
+        gap: 8px;
+        padding: 0 14px
+    }
+
+    .logo i {
+        width: 34px;
+        height: 34px
+    }
+
+    .acts {
+        gap: 6px
+    }
+
+    .theme {
+        width: 40px;
+        height: 40px
+    }
+
+    .menu {
+        width: 40px;
+        height: 40px
     }
 
     .soon {
@@ -1518,7 +1648,7 @@ footer a:hover {
     }
 }
 
-@media(max-width:380px) {
+@media(max-width:385px) {
     .logo span {
         display: none
     }

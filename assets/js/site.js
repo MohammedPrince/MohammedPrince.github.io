@@ -2,6 +2,26 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+// Light / dark mode. The saved choice is applied in the page head, before painting.
+const themeBtn = $('.theme');
+if (themeBtn) {
+  const root = document.documentElement;
+  const system = matchMedia('(prefers-color-scheme: light)');
+  const isLight = () => root.dataset.theme === 'light' || (root.dataset.theme === 'auto' && system.matches);
+  const sync = () => {
+    themeBtn.setAttribute('aria-label', isLight() ? 'Switch to dark mode' : 'Switch to light mode');
+    $('meta[name="theme-color"]').content = getComputedStyle(root).getPropertyValue('--bg').trim();
+  };
+  themeBtn.addEventListener('click', () => {
+    const next = isLight() ? 'dark' : 'light';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch { /* storage blocked: lasts for this page only */ }
+    sync();
+  });
+  system.addEventListener('change', sync);
+  sync();
+}
+
 // Mobile menu
 const menu = $('.menu');
 const links = $('.links');

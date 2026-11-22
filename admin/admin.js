@@ -30,6 +30,7 @@ const TABS = {
     t('profile.tagline', 'Tagline'), img('profile.photo', 'Photo', { help: 'Leave empty to show your initials.' }),
     t('profile.email', 'Email', { required: true }), t('profile.phone', 'Phone'), t('profile.whatsapp', 'WhatsApp number (digits only)', { required: true }),
     t('profile.city', 'City'), t('profile.country', 'Country'), { type: 'pdf', key: 'profile.resumeUrl', label: 'CV (PDF file or https:// link)' },
+    { type: 'select', key: 'site.theme', label: 'Default theme', options: ['dark', 'light', 'auto'], help: 'What new visitors see. auto = follows their device. Visitors can switch with the button in the header.' },
     list('profile.socials', 'Social links', [select('type', 'Network', SOCIAL_NAMES), t('url', 'Link', { url: true, required: true })], 'type'),
   ],
   'Hero & stats': [
