@@ -1,0 +1,381 @@
+{
+  "site": {
+    "url": "https://mohammedprince.github.io/",
+    "title": "Mohammed Ahmed — Software Engineer | Web, Database & API Development",
+    "description": "Mohammed Ahmed is a software engineer in Port Sudan, Sudan with 13+ years building web platforms, databases and APIs. See selected projects and get in touch.",
+    "ogImage": "assets/images/og-image.jpg",
+    "googleVerification": "",
+    "updated": "2026-11-22"
+  },
+  "profile": {
+    "name": "Mohammed Ahmed",
+    "alternateNames": [
+      "Mohammed Abuelgassim",
+      "Mohammed Prince"
+    ],
+    "initials": "MA",
+    "role": "Software Engineer · CESD Director",
+    "jobTitle": "Software Engineer",
+    "photo": "assets/images/profile.webp",
+    "tagline": "...sometimes I do coding🐌",
+    "email": "mohammed.beng@gmail.com",
+    "phone": "+249 916 554 412",
+    "whatsapp": "249916554412",
+    "city": "Port Sudan",
+    "country": "Sudan",
+    "resumeUrl": "assets/files/Mohammed_Abuelgassim_CV.pdf",
+    "socials": [
+      {
+        "type": "github",
+        "url": "https://github.com/MohammedPrince/"
+      },
+      {
+        "type": "linkedin",
+        "url": "https://www.linkedin.com/in/mohammed-abuelgassim/"
+      },
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/Mohammed.Prince.Cyclist/"
+      },
+      {
+        "type": "instagram",
+        "url": "https://www.instagram.com/mohammed_prince_/"
+      },
+      {
+        "type": "whatsapp",
+        "url": "https://api.whatsapp.com/send?phone=249916554412&text=Hello,%20Are%20you%20available%20to%20chat?"
+      }
+    ]
+  },
+  "hero": {
+    "badge": "Open to new roles & freelance projects",
+    "headline": "I build software\nthat's *scalable,*\n*secure* & human.",
+    "text": "Software engineer with 13+ years across web platforms, databases, APIs and system analysis — turning business needs into products people actually enjoy using."
+  },
+  "stats": [
+    {
+      "value": "13+",
+      "label": "Years of experience"
+    },
+    {
+      "value": "auto:projects",
+      "label": "Featured projects"
+    },
+    {
+      "value": "auto:clients",
+      "label": "Organizations served"
+    },
+    {
+      "value": "2",
+      "label": "Countries · Sudan & UAE"
+    }
+  ],
+  "services": {
+    "kicker": "What I do",
+    "title": "Services & expertise",
+    "intro": "From the first requirements workshop to production — I own the full lifecycle of the software I build.",
+    "items": [
+      {
+        "icon": "browser",
+        "title": "Web Development",
+        "text": "Responsive, scalable and secure web applications tailored to business needs and user expectations.",
+        "percent": 90,
+        "featured": true
+      },
+      {
+        "icon": "database",
+        "title": "Database & API Engineering",
+        "text": "Robust database structures and efficient APIs for smooth data flow, integration and reliability.",
+        "percent": 85,
+        "featured": false
+      },
+      {
+        "icon": "pencil",
+        "title": "System Analysis & Solution Design",
+        "text": "Analyzing business requirements and translating them into innovative, scalable software solutions.",
+        "percent": 95,
+        "featured": false
+      },
+      {
+        "icon": "phone",
+        "title": "Mobile App Development",
+        "text": "High-performance, user-friendly mobile apps with seamless functionality and modern UI/UX.",
+        "percent": 70,
+        "featured": false
+      }
+    ]
+  },
+  "resume": {
+    "kicker": "Resume",
+    "title": "Experience & education",
+    "experience": [
+      {
+        "period": "2019 — Present",
+        "title": "CESD Director",
+        "text": "Center of E-learning & Software Development, Future University · Khartoum, Sudan",
+        "current": true
+      },
+      {
+        "period": "2024 — Present",
+        "title": "Software Engineer",
+        "text": "iWash Auto Care Services · Abu Dhabi, UAE (Remote)",
+        "current": true
+      },
+      {
+        "period": "2024",
+        "title": "Senior Software Developer",
+        "text": "Dar Alafkar Marketing Company · Dubai, UAE",
+        "current": false
+      }
+    ],
+    "education": [
+      {
+        "period": "2015 — 2017",
+        "title": "M.Sc. Information Systems",
+        "text": "Future University, Sudan",
+        "current": false
+      },
+      {
+        "period": "2008 — 2012",
+        "title": "B.Sc. (Honors) Computer Science",
+        "text": "Future University, Sudan",
+        "current": false
+      }
+    ]
+  },
+  "portfolio": {
+    "kicker": "Portfolio",
+    "title": "Selected work",
+    "categories": [
+      "Web",
+      "Database & API",
+      "Mobile"
+    ],
+    "projects": [
+      {
+        "title": "SunXFinder",
+        "subtitle": "Solar marketplace platform for Sudan, in English & Arabic",
+        "category": "Web",
+        "url": "https://sunxfinder.com/",
+        "image": "assets/images/projects/sunxfinder-web.webp",
+        "fit": "cover",
+        "wide": true,
+        "gallery": []
+      },
+      {
+        "title": "SunXFinder App",
+        "subtitle": "Find, compare and connect with solar companies — Flutter app in English & Arabic",
+        "category": "Mobile",
+        "url": "",
+        "image": "assets/images/projects/sunxfinder-app.webp",
+        "fit": "cover",
+        "wide": true,
+        "gallery": [
+          {
+            "image": "assets/images/projects/sunxfinder-app/1.webp",
+            "alt": "Splash screen"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/2.webp",
+            "alt": "Language choice: English or Arabic"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/3.webp",
+            "alt": "Onboarding: Find every solar company in one place"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/4.webp",
+            "alt": "Onboarding: Know your size, then compare prices"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/5.webp",
+            "alt": "Onboarding: Accept an offer and follow the work"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/6.webp",
+            "alt": "Login screen"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/7.webp",
+            "alt": "Create customer account"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/8.webp",
+            "alt": "Home screen with load calculator and latest request"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/9.webp",
+            "alt": "Load calculator: add your appliances"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/10.webp",
+            "alt": "Load calculator: daily usage"
+          },
+          {
+            "image": "assets/images/projects/sunxfinder-app/11.webp",
+            "alt": "Recommended solar system summary"
+          }
+        ]
+      },
+      {
+        "title": "Unlock-SD",
+        "subtitle": "Mobile unlocking services platform with reseller API",
+        "category": "Web",
+        "url": "https://unlock-sd.com/",
+        "image": "assets/images/projects/unlock-sd.webp",
+        "fit": "cover",
+        "wide": true,
+        "gallery": []
+      },
+      {
+        "title": "Student Desk",
+        "subtitle": "Future University student services — results, timetable, registration and fees",
+        "category": "Web",
+        "url": "https://desk.fu.edu.sd/",
+        "image": "assets/images/projects/fu-student-desk-web.webp",
+        "fit": "cover",
+        "wide": true,
+        "gallery": []
+      },
+      {
+        "title": "The Future University",
+        "subtitle": "University website",
+        "category": "Web",
+        "url": "https://fu.edu.sd/",
+        "image": "assets/images/projects/future-university.webp",
+        "fit": "cover",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "Innovation R&D Center",
+        "subtitle": "Center website",
+        "category": "Web",
+        "url": "https://irdc.fu.edu.sd/",
+        "image": "assets/images/projects/irdc.webp",
+        "fit": "cover",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "Deals & Coupons MENA",
+        "subtitle": "Deals platform",
+        "category": "Web",
+        "url": "https://dealsandcouponsmena.com/en/",
+        "image": "assets/images/projects/deals-and-coupons-mena.webp",
+        "fit": "cover",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "Sawa Organization",
+        "subtitle": "Organization website",
+        "category": "Web",
+        "url": "",
+        "image": "assets/images/projects/sawa-organization.webp",
+        "fit": "cover",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "iWash Auto Care",
+        "subtitle": "Company website",
+        "category": "Web",
+        "url": "https://iwash.ae/",
+        "image": "assets/images/projects/iwash.webp",
+        "fit": "cover",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "iWash Backend",
+        "subtitle": "Database & API layer",
+        "category": "Database & API",
+        "url": "https://iwash.ae/",
+        "image": "assets/images/clients/iwash.webp",
+        "fit": "contain",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "FU Student Desk",
+        "subtitle": "Student mobile app",
+        "category": "Mobile",
+        "url": "https://fu.edu.sd/",
+        "image": "assets/images/projects/fu-student-desk.webp",
+        "fit": "contain",
+        "wide": false,
+        "gallery": []
+      },
+      {
+        "title": "Sawa Admin Panel",
+        "subtitle": "Content management",
+        "category": "Web",
+        "url": "",
+        "image": "assets/images/projects/sawa-admin-panel.webp",
+        "fit": "cover",
+        "wide": false,
+        "gallery": []
+      }
+    ]
+  },
+  "recommendations": {
+    "kicker": "Recommendations",
+    "title": "Kind words from colleagues",
+    "items": [
+      {
+        "name": "Khalid Sheikhidris",
+        "role": "Colleague · Future University",
+        "initials": "KS",
+        "color": "gold",
+        "url": "https://www.linkedin.com/in/khalidkaradh/",
+        "text": "I have had the pleasure of working closely with Mr. Mohammed on various projects in the Future University, whereby his technical expertise and problem-solving abilities as well as his strong ability to take on complex challenges and deliver high-quality technical solutions have never disappointed me nor others. Mr. Mohammed is an exceptional software developer whose skills and dedication have greatly contributed to the successful development and implementation of many systems in the Future University including the digital archiving system, the electronic registration and payment system, the innovation research and development center (IRDC) web-site management system, the facilities and inventory management system, the online results system, the online graduates registry system, and the e-learning management system."
+      },
+      {
+        "name": "Banan Yahia Mursi",
+        "role": "Colleague · 6+ years",
+        "initials": "BM",
+        "color": "blue",
+        "url": "https://www.linkedin.com/in/banan-yahia",
+        "text": "I am writing to provide a strong recommendation for Mohammed, who has been a valuable member of our team for over six years as a software developer.\n\nDuring our extensive collaboration, I have had the privilege of closely witnessing Mohammed's exceptional skills, dedication, and professionalism. His technical expertise, combined with a strong work ethic, has consistently impressed both myself and our entire team. I wholeheartedly endorse Mohammed's abilities and believe his would be a tremendous asset to any organization."
+      }
+    ]
+  },
+  "clients": [
+    {
+      "name": "The Future University",
+      "logo": "assets/images/clients/future-university.webp",
+      "url": "https://fu.edu.sd/"
+    },
+    {
+      "name": "iWash",
+      "logo": "assets/images/clients/iwash.webp",
+      "url": "https://iwash.ae/"
+    },
+    {
+      "name": "Sawa Organization",
+      "logo": "assets/images/clients/sawa.webp",
+      "url": ""
+    },
+    {
+      "name": "Deals & Coupons MENA",
+      "logo": "assets/images/clients/deals-and-coupons-mena.webp",
+      "url": "https://dealsandcouponsmena.com/en"
+    }
+  ],
+  "blog": {
+    "kicker": "Blog",
+    "title": "Notes & articles",
+    "emptyText": "Soon, but it will never come!",
+    "posts": []
+  },
+  "contact": {
+    "kicker": "Contact",
+    "title": "Have a project in mind?\nLet's build it together.",
+    "text": "or drop a message — I usually reply within a day."
+  },
+  "footer": {
+    "text": "Built with care in Port Sudan.",
+    "counterUrl": ""
+  }
+}

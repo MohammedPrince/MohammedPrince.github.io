@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://api.github.com; frame-src 'self'; base-uri 'self'; form-action 'none'">
+<title>Site editor</title>
+<link rel="icon" href="../assets/icons/icon-32.png" type="image/png">
+<link rel="stylesheet" href="admin.css">
+<script src="admin.js" type="module"></script>
+</head>
+<body class="locked">
+<header>
+  <b class="brand"><i>MA</i> Site editor</b>
+  <span id="status" role="status"></span>
+  <div class="actions">
+    <button type="button" id="preview-btn">Preview</button>
+    <button type="button" id="publish-btn" class="primary" disabled>Publish</button>
+  </div>
+</header>
+<form id="login" class="card" autocomplete="on">
+  <h1 id="login-title">Sign in</h1>
+  <p data-mode="setup" class="help">First time on this browser: choose your password and connect it to GitHub once. After that you only need the username and password.</p>
+  <div class="field"><label for="username">Username</label><input id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
+  <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
+  <div class="field" data-mode="setup"><label for="again">Password again</label><input id="again" name="again" type="password" autocomplete="new-password"></div>
+  <div class="field" data-mode="setup renew">
+    <label for="pat">GitHub token</label>
+    <input id="pat" name="pat" type="password" autocomplete="off" placeholder="github_pat_…">
+    <ol class="help">
+      <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Open the GitHub token page</a></li>
+      <li>Repository access → Only select repositories → MohammedPrince.github.io</li>
+      <li>Repository permissions → Contents → Read and write. Nothing else.</li>
+      <li>Choose an expiry date, generate the token and paste it here.</li>
+    </ol>
+  </div>
+  <div class="row"><button class="primary" name="go">Sign in</button> <button type="button" id="forgot" data-mode="login renew">Forgot password</button></div>
+</form>
+<div class="layout">
+  <nav id="tabs" aria-label="Sections"></nav>
+  <main id="panel"></main>
+</div>
+<dialog id="preview">
+  <div class="bar">
+    <b>Preview — not published yet</b>
+    <span><button type="button" data-width="100%">Desktop</button> <button type="button" data-width="390px">Phone</button> <button type="button" data-close>Close</button></span>
+  </div>
+  <iframe title="Preview" sandbox="allow-same-origin"></iframe>
+</dialog>
+<noscript>The editor needs JavaScript.</noscript>
+</body>
+</html>
