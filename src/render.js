@@ -146,12 +146,31 @@ ${ld ? `<script type="application/ld+json">${json(ld)}</script>\n` : ''}</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 ${body}
-</body>
+${noindex ? '' : `${sharePanel(url, title)}\n`}</body>
 </html>
 `;
 }
 
 const NAV = [['about', 'About'], ['services', 'Services'], ['resume', 'Resume'], ['portfolio', 'Portfolio'], ['blog', 'Blog'], ['contact', 'Contact']];
+
+const SHARE_ICON = line('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>', 18);
+
+// Fallback share panel for browsers without the phone's share sheet (navigator.share).
+function sharePanel(url, title) {
+  const u = encodeURIComponent(url);
+  const t = encodeURIComponent(title);
+  const nets = [
+    ['WhatsApp', `https://api.whatsapp.com/send?text=${t}%20${u}`],
+    ['Facebook', `https://www.facebook.com/sharer/sharer.php?u=${u}`],
+    ['X', `https://x.com/intent/post?url=${u}&text=${t}`],
+    ['LinkedIn', `https://www.linkedin.com/sharing/share-offsite/?url=${u}`],
+    ['Telegram', `https://t.me/share/url?url=${u}&text=${t}`],
+    ['Email', `mailto:?subject=${t}&body=${u}`],
+  ];
+  return `<dialog id="share" class="share" aria-label="Share this page"><div class="gh"><h3>Share</h3><div><button type="button" data-close aria-label="Close">✕</button></div></div>
+<ul>${nets.map(([n, href]) => `<li><a href="${esc(href)}"${isExternal(href) ? ' target="_blank" rel="noopener"' : ''}>${n}</a></li>`).join('')}</ul>
+<button type="button" class="b2" data-copy="${esc(url)}">Copy link</button></dialog>`;
+}
 
 const waLink = (d) => `https://api.whatsapp.com/send?phone=${String(d.profile.whatsapp).replace(/\D/g, '')}&text=${encodeURIComponent('Hello, are you available to chat?')}`;
 
@@ -161,6 +180,7 @@ function header(d, home, active) {
 <nav class="links" id="menu" aria-label="Main">${NAV.map(([id, label]) => `<a href="${home}#${id}"${id === active ? ' class="on" aria-current="true"' : ''}>${label}</a>`).join('')}</nav>
 <div class="acts">
 <button class="theme" type="button" aria-label="Switch between light and dark mode"><svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z"/></svg><svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2L19 19M19 5l-1.8 1.8M6.8 17.2L5 19"/></svg></button>
+<button class="shr" type="button" data-share aria-label="Share this page" hidden>${SHARE_ICON}</button>
 <a class="hire" href="${esc(waLink(d))}" target="_blank" rel="noopener">Let's talk ${ARROW}</a>
 <button class="menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">${line('<path d="M4 7h16M4 12h16M4 17h16"/>', 20)}</button>
 </div></div></header>`;
@@ -254,7 +274,7 @@ function renderIndex(d, css) {
 <h1>${headline(d.hero.headline)}</h1>
 <p>${esc(d.hero.text)}</p>
 <div class="ctas"><a class="b1" href="#portfolio">View my work ${ARROW}</a>${resume ? `<a class="b2" href="${esc(resume)}"${isExternal(resume) ? ext(resume) : ' download'}>${line('<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>', 16)}Download CV</a>` : ''}</div>
-<div class="soc">${p.socials.filter((s) => safeUrl(s.url)).map((s) => { const [label, icon] = SOCIALS[s.type] || SOCIALS.website; return `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="me noopener" aria-label="${label}">${icon}</a>`; }).join('')}</div>
+<div class="soc">${p.socials.filter((s) => safeUrl(s.url)).map((s) => { const [label, icon] = SOCIALS[s.type] || SOCIALS.website; return `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="me noopener" aria-label="${label}">${icon}</a>`; }).join('')}<button type="button" class="shr" data-share aria-label="Share my profile" hidden>${SHARE_ICON}</button></div>
 </div>
 <div class="pc">
 <div class="av">${p.photo ? `<img src="${asset(p.photo, base)}" alt="${esc(p.name)} avatar" width="654" height="530" fetchpriority="high">` : `<b aria-hidden="true">${esc(p.initials)}</b>`}${p.tagline ? `<small>${esc(p.tagline)}</small>` : ''}</div>

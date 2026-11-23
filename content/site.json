@@ -50,7 +50,7 @@
   },
   "hero": {
     "badge": "Open to new roles & freelance projects",
-    "headline": "I build software\nthat's *scalable,*\n*secure* & human.",
+    "headline": "Software engineer\nbuilding systems\nthat's *scalable,*\n*secure* & human.",
     "text": "Software engineer with 13+ years across web platforms, databases, APIs and system analysis — turning business needs into products people actually enjoy using."
   },
   "stats": [
@@ -467,7 +467,7 @@
     "text": "or drop a message — I usually reply within a day."
   },
   "footer": {
-    "text": "Built with care in Port Sudan.",
+    "text": "Engineering reliable software from Port Sudan to the world.",
     "counterUrl": ""
   }
 }

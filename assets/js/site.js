@@ -62,6 +62,39 @@ if (spy.size) {
   for (const el of spy.keys()) io.observe(el);
 }
 
+// Share: the phone's own share sheet (WhatsApp, Telegram, Instagram…) when available, else a panel of links
+const sharePanel = $('#share');
+for (const btn of $$('[data-share]')) {
+  if (!navigator.share && !sharePanel) continue;
+  btn.hidden = false;
+  btn.addEventListener('click', async () => {
+    const url = sharePanel?.querySelector('[data-copy]')?.dataset.copy || location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: document.title, url });
+        return;
+      } catch (e) {
+        if (e.name === 'AbortError' || !sharePanel) return;
+      }
+    }
+    sharePanel.showModal();
+  });
+}
+if (sharePanel) {
+  sharePanel.addEventListener('click', async (e) => {
+    if (e.target === sharePanel || e.target.closest('[data-close]')) return sharePanel.close();
+    const copy = e.target.closest('[data-copy]');
+    if (!copy) return;
+    try {
+      await navigator.clipboard.writeText(copy.dataset.copy);
+      copy.textContent = 'Link copied ✓';
+    } catch {
+      copy.textContent = copy.dataset.copy;
+    }
+    setTimeout(() => { copy.textContent = 'Copy link'; }, 2500);
+  });
+}
+
 // Portfolio filter
 const filters = $$('.filters button');
 for (const btn of filters) {
