@@ -155,24 +155,35 @@
     "projects": [
       {
         "title": "SunXFinder",
-        "subtitle": "Solar marketplace platform for Sudan, in English & Arabic",
+        "subtitle": "Solar marketplace platform for Sudan — find, compare and connect with solar companies, in English & Arabic.",
         "category": "Web",
+        "alsoIn": [
+          "Database & API",
+          "Mobile"
+        ],
+        "visibility": "",
         "url": "https://sunxfinder.com/",
         "image": "assets/images/logos/sunxfinder.webp",
-        "fit": "logo",
         "color": "#ff6a00",
-        "wide": true,
-        "gallery": []
-      },
-      {
-        "title": "SunXFinder App",
-        "subtitle": "Find, compare and connect with solar companies — Flutter app in English & Arabic",
-        "category": "Mobile",
-        "url": "",
-        "image": "assets/images/logos/sunxfinder.webp",
-        "fit": "logo",
-        "color": "#0b3a75",
-        "wide": true,
+        "featured": true,
+        "status": [
+          "web: live",
+          "app: in development"
+        ],
+        "highlights": [
+          "Bilingual web platform with full Arabic RTL support",
+          "Versioned customer API powering the mobile app",
+          "Flutter Android app built on the same backend"
+        ],
+        "tech": [
+          "Laravel 12",
+          "MySQL",
+          "REST API",
+          "Flutter",
+          "Dart",
+          "i18n / RTL"
+        ],
+        "preview": "assets/images/projects/sunxfinder-app/8.webp",
         "gallery": [
           {
             "image": "assets/images/projects/sunxfinder-app/1.webp",
@@ -222,112 +233,180 @@
       },
       {
         "title": "Unlock-SD",
-        "subtitle": "Mobile unlocking services platform with reseller API",
+        "subtitle": "Mobile unlocking services platform with a reseller API.",
         "category": "Web",
+        "alsoIn": [],
+        "visibility": "public",
         "url": "https://unlock-sd.com/",
         "image": "assets/images/logos/unlock-sd.webp",
-        "fit": "logo",
         "color": "#d4101f",
-        "wide": true,
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [
+          "PHP",
+          "REST API"
+        ],
+        "preview": "",
         "gallery": []
       },
       {
         "title": "Student Desk",
-        "subtitle": "Future University student services — results, timetable, registration and fees",
+        "subtitle": "Future University student services — results, timetable, registration and fees.",
         "category": "Web",
+        "alsoIn": [],
+        "visibility": "internal",
         "url": "https://desk.fu.edu.sd/",
         "image": "assets/images/logos/future-university.webp",
-        "fit": "logo",
         "color": "#e0342b",
-        "wide": true,
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [
+          "PHP",
+          "MySQL"
+        ],
+        "preview": "",
+        "gallery": []
+      },
+      {
+        "title": "FU Student Desk",
+        "subtitle": "Student mobile app for Future University services on the go.",
+        "category": "Mobile",
+        "alsoIn": [],
+        "visibility": "",
+        "url": "https://fu.edu.sd/",
+        "image": "assets/images/logos/future-university.webp",
+        "color": "#8a2b22",
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [
+          "Flutter",
+          "Mobile"
+        ],
+        "preview": "",
+        "gallery": []
+      },
+      {
+        "title": "iWash Backend",
+        "subtitle": "Database design and API layer for iWash Auto Care Services.",
+        "category": "Database & API",
+        "alsoIn": [],
+        "visibility": "",
+        "url": "https://iwash.ae/",
+        "image": "assets/images/logos/iwash.webp",
+        "color": "#0078ad",
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [
+          "MariaDB",
+          "API"
+        ],
+        "preview": "",
+        "gallery": []
+      },
+      {
+        "title": "iWash Auto Care",
+        "subtitle": "Company website for iWash Auto Care Services, Abu Dhabi.",
+        "category": "Web",
+        "alsoIn": [],
+        "visibility": "public",
+        "url": "https://iwash.ae/",
+        "image": "assets/images/logos/iwash.webp",
+        "color": "#00b4dc",
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [
+          "Web",
+          "UAE"
+        ],
+        "preview": "",
+        "gallery": []
+      },
+      {
+        "title": "Deals & Coupons MENA",
+        "subtitle": "Deals and coupons platform for the MENA region.",
+        "category": "Web",
+        "alsoIn": [],
+        "visibility": "public",
+        "url": "https://dealsandcouponsmena.com/en/",
+        "image": "assets/images/logos/deals-and-coupons-mena.webp",
+        "color": "#1f86d1",
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [
+          "PHP",
+          "Web"
+        ],
+        "preview": "",
         "gallery": []
       },
       {
         "title": "The Future University",
         "subtitle": "University website",
         "category": "Web",
+        "alsoIn": [],
+        "visibility": "public",
         "url": "https://fu.edu.sd/",
         "image": "assets/images/logos/future-university.webp",
-        "fit": "logo",
         "color": "#e0342b",
-        "wide": false,
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [],
+        "preview": "",
         "gallery": []
       },
       {
         "title": "Innovation R&D Center",
         "subtitle": "Center website",
         "category": "Web",
+        "alsoIn": [],
+        "visibility": "public",
         "url": "https://irdc.fu.edu.sd/",
         "image": "assets/images/logos/future-university.webp",
-        "fit": "logo",
         "color": "#f39a1f",
-        "wide": false,
-        "gallery": []
-      },
-      {
-        "title": "Deals & Coupons MENA",
-        "subtitle": "Deals platform",
-        "category": "Web",
-        "url": "https://dealsandcouponsmena.com/en/",
-        "image": "assets/images/logos/deals-and-coupons-mena.webp",
-        "fit": "logo",
-        "color": "#1f86d1",
-        "wide": false,
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [],
+        "preview": "",
         "gallery": []
       },
       {
         "title": "Sawa Organization",
         "subtitle": "Organization website",
         "category": "Web",
+        "alsoIn": [],
+        "visibility": "",
         "url": "",
         "image": "assets/images/logos/sawa.webp",
-        "fit": "logo",
         "color": "#14805e",
-        "wide": false,
-        "gallery": []
-      },
-      {
-        "title": "iWash Auto Care",
-        "subtitle": "Company website",
-        "category": "Web",
-        "url": "https://iwash.ae/",
-        "image": "assets/images/logos/iwash.webp",
-        "fit": "logo",
-        "color": "#00b4dc",
-        "wide": false,
-        "gallery": []
-      },
-      {
-        "title": "iWash Backend",
-        "subtitle": "Database & API layer",
-        "category": "Database & API",
-        "url": "https://iwash.ae/",
-        "image": "assets/images/logos/iwash.webp",
-        "fit": "logo",
-        "color": "#0078ad",
-        "wide": false,
-        "gallery": []
-      },
-      {
-        "title": "FU Student Desk",
-        "subtitle": "Student mobile app",
-        "category": "Mobile",
-        "url": "https://fu.edu.sd/",
-        "image": "assets/images/logos/future-university.webp",
-        "fit": "logo",
-        "color": "#8a2b22",
-        "wide": false,
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [],
+        "preview": "",
         "gallery": []
       },
       {
         "title": "Sawa Admin Panel",
         "subtitle": "Content management",
         "category": "Web",
+        "alsoIn": [],
+        "visibility": "",
         "url": "",
         "image": "assets/images/logos/sawa.webp",
-        "fit": "logo",
         "color": "#14805e",
-        "wide": false,
+        "featured": false,
+        "status": [],
+        "highlights": [],
+        "tech": [],
+        "preview": "",
         "gallery": []
       }
     ]

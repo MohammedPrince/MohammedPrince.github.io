@@ -71,7 +71,7 @@ for (const btn of filters) {
       b.setAttribute('aria-pressed', b === btn);
     }
     const cat = btn.dataset.filter;
-    for (const card of $$('.pg [data-cat]')) card.hidden = !!cat && card.dataset.cat !== cat;
+    for (const card of $$('.pg [data-cat]')) card.hidden = !!cat && !card.dataset.cat.split('|').includes(cat);
   });
 }
 

@@ -39,8 +39,6 @@
     --dash: #3a3a42;
     --tile: #1d1d1e;
     --tile2: #242426;
-    --lg1: 30%;
-    --lg2: 16%;
     --field: rgba(0, 0, 0, .35);
     --shadow: rgba(0, 0, 0, .6);
 }
@@ -68,8 +66,6 @@
     --dash: #c9c5bb;
     --tile: #f1efea;
     --tile2: #e8e5de;
-    --lg1: 26%;
-    --lg2: 14%;
     --field: #ffffff;
     --shadow: rgba(60, 50, 20, .18);
 }
@@ -97,8 +93,6 @@
         --dash: #c9c5bb;
         --tile: #f1efea;
         --tile2: #e8e5de;
-        --lg1: 26%;
-        --lg2: 14%;
         --field: #ffffff;
         --shadow: rgba(60, 50, 20, .18);
     }
@@ -869,8 +863,8 @@ h2 {
 
 .pg {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px
 }
 
 .pj {
@@ -882,15 +876,6 @@ h2 {
     display: flex;
     flex-direction: column;
     transition: border-color .2s, transform .2s
-}
-
-.pj.wide {
-    grid-column: span 2
-}
-
-.wide .th,
-.wide .th img {
-    height: 240px
 }
 
 .pj.act:hover {
@@ -913,87 +898,6 @@ h2 {
     height: 150px;
     object-fit: cover;
     object-position: top
-}
-
-.th img.fit {
-    width: 70%;
-    height: 96px;
-    object-fit: contain;
-    object-position: center
-}
-
-/* logo cards: a white plate keeps every logo readable in both themes; --c is the brand colour */
-.lg {
-    --c: var(--gold);
-    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--c) var(--lg1), transparent), transparent 72%), linear-gradient(135deg, color-mix(in srgb, var(--c) var(--lg2), var(--tile)), var(--tile))
-}
-
-.lg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, color-mix(in srgb, var(--c) 45%, transparent) 1px, transparent 1.5px) center / 18px 18px;
-    opacity: .35;
-    -webkit-mask: radial-gradient(circle, transparent 25%, #000);
-    mask: radial-gradient(circle, transparent 25%, #000)
-}
-
-.pl {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 150px;
-    height: 104px;
-    margin-top: 26px;
-    padding: 14px 18px;
-    background: #fff;
-    border-radius: 22px;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 14px 34px color-mix(in srgb, var(--c) 34%, transparent);
-    transition: transform .25s
-}
-
-.pj:not(.wide) .lg {
-    height: 178px
-}
-
-.wide .pl {
-    width: 260px;
-    margin-top: 0;
-    height: 168px;
-    padding: 24px 30px;
-    border-radius: 30px
-}
-
-.act:hover .pl {
-    transform: scale(1.05)
-}
-
-.th.lg .pl img {
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-    object-fit: contain;
-    object-position: center
-}
-
-.th .ph {
-    font-size: 34px;
-    font-weight: 800;
-    color: var(--accent);
-    opacity: .85
-}
-
-.th .t {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    font-size: 11px;
-    font-weight: 700;
-    background: rgba(0, 0, 0, .72);
-    border: 1px solid rgba(255, 255, 255, .16);
-    padding: 4px 9px;
-    border-radius: 7px;
-    color: #eee
 }
 
 .pj .bd {
@@ -1048,6 +952,271 @@ h2 {
     display: grid;
     place-items: center;
     color: var(--accent)
+}
+
+/* project cards; --c is the brand colour, logos sit on a white plate so they read in both themes */
+.wf,
+.wk {
+    --c: var(--gold);
+    background: var(--s1);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    position: relative
+}
+
+.wl {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    padding: 9px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05)
+}
+
+.wl img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.wl b {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111
+}
+
+/* featured */
+.wf {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden
+}
+
+.wv {
+    position: relative;
+    min-height: 420px;
+    display: grid;
+    place-items: center;
+    border-right: 1px solid var(--line);
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--c) 24%, transparent), transparent 62%), var(--tile);
+    overflow: hidden
+}
+
+.wv .wl {
+    width: 160px;
+    height: 160px;
+    padding: 22px;
+    border-radius: 34px;
+    box-shadow: 0 20px 50px color-mix(in srgb, var(--c) 30%, transparent);
+    transform: translateX(-30%)
+}
+
+.phone {
+    position: absolute;
+    right: 9%;
+    bottom: -60px;
+    width: 160px;
+    aspect-ratio: 9 / 18;
+    padding: 6px;
+    background: #0d0d10;
+    border: 2px solid #2c2c33;
+    border-radius: 28px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .5)
+}
+
+.phone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 22px
+}
+
+.wb {
+    padding: 44px;
+    min-width: 0
+}
+
+.st,
+.chips,
+.tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+.st li,
+.chips li,
+.tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--mu);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 4px 10px;
+    text-transform: lowercase
+}
+
+.st .ok,
+.st .wip {
+    --t: #34d399;
+    color: var(--t);
+    border-color: color-mix(in srgb, var(--t) 40%, transparent);
+    background: color-mix(in srgb, var(--t) 10%, transparent)
+}
+
+.st .wip {
+    --t: var(--gold)
+}
+
+[data-theme="light"] .st .ok {
+    --t: #0b7a52
+}
+
+[data-theme="light"] .st .wip {
+    --t: var(--accent)
+}
+
+.st .ok::before,
+.st .wip::before {
+    content: "●";
+    font-size: 9px;
+    margin-right: 6px;
+    vertical-align: 2px
+}
+
+.wb h3 {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin: 22px 0 12px
+}
+
+.wb>p {
+    color: var(--mu);
+    font-size: 17px;
+    line-height: 1.7
+}
+
+.hl {
+    margin-top: 18px;
+    display: grid;
+    gap: 8px;
+    color: var(--tx2);
+    font-size: 15.5px
+}
+
+.hl li {
+    display: flex;
+    gap: 12px
+}
+
+.hl li::before {
+    content: "→";
+    color: var(--accent)
+}
+
+.chips {
+    margin-top: 24px
+}
+
+.chips li {
+    color: var(--tx2);
+    font-size: 13px;
+    padding: 6px 12px;
+    text-transform: none
+}
+
+.wbtn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px
+}
+
+.wbtn .b1,
+.wbtn .b2 {
+    padding: 12px 20px;
+    font-size: 14px
+}
+
+/* compact */
+.wk {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    transition: border-color .2s, transform .2s
+}
+
+.wk.act:hover {
+    border-color: var(--warmline);
+    transform: translateY(-3px)
+}
+
+.wh {
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+
+.wh>div {
+    min-width: 0
+}
+
+.wk h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px
+}
+
+.tag {
+    display: inline-block;
+    font-size: 11.5px;
+    padding: 2px 9px;
+    border-radius: 99px
+}
+
+.wk>p {
+    color: var(--mu);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 18px 0 22px
+}
+
+.ft {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px
+}
+
+.tech {
+    gap: 6px 18px;
+    font-size: 13px;
+    color: var(--mu)
+}
+
+.tech .dot::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--d, var(--mu));
+    margin-right: 7px;
+    vertical-align: -1px
+}
+
+.wk .go {
+    border: 0;
+    width: 24px;
+    height: 24px
 }
 
 /* gallery */
@@ -1589,8 +1758,26 @@ footer a:hover {
     }
 
     .rs,
-    .rc {
+    .rc,
+    .wf {
         grid-template-columns: 1fr
+    }
+
+    .wv {
+        min-height: 300px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line)
+    }
+
+    .wv .wl {
+        width: 120px;
+        height: 120px;
+        border-radius: 28px
+    }
+
+    .phone {
+        width: 120px;
+        bottom: -70px
     }
 
     .stats {
@@ -1654,24 +1841,14 @@ footer a:hover {
         grid-template-columns: 1fr
     }
 
-    .pj.wide {
-        grid-column: auto
-    }
-
     .th,
-    .th img,
-    .wide .th,
-    .wide .th img {
+    .th img {
         height: 180px
     }
 
-    .pl,
-    .wide .pl {
-        width: 190px;
-        height: 112px;
-        margin-top: 26px;
-        padding: 15px 22px;
-        border-radius: 24px
+    .wb,
+    .wk {
+        padding: 24px 20px
     }
 
     .hire svg {

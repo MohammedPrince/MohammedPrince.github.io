@@ -176,25 +176,45 @@ ${counter ? `<span class="cnt" data-counter="${esc(counter)}" hidden>Visitors <b
 
 const heading = (s, extra = '') => `<div class="hd"><div><p class="k">${esc(s.kicker)}</p><h2>${esc(s.title)}</h2></div>${extra}</div>`;
 
+// Dot colours for the first technology on a project card (GitHub-style language colours).
+const TECH_COLORS = {
+  php: '#777bb4', laravel: '#ff2d20', flutter: '#02569b', dart: '#00b4ab', mysql: '#4479a1', mariadb: '#c0765a',
+  web: '#e34c26', html: '#e34c26', css: '#663399', javascript: '#f1e05a', typescript: '#3178c6', react: '#61dafb',
+  node: '#3c873a', 'node.js': '#3c873a', wordpress: '#21759b', kotlin: '#a97bff', swift: '#f05138', python: '#3572a5',
+};
+const techColor = (name) => TECH_COLORS[String(name).toLowerCase().replace(/\s+\d.*$/, '')] || '';
+// "web: live" turns green, "app: in development" turns amber, anything else stays neutral.
+const statusTone = (s) => (/\b(live|online|launched|shipped)\b/i.test(s) ? 'ok' : /develop|progress|beta|soon|build/i.test(s) ? 'wip' : '');
+const brand = (p) => (/^#[0-9a-f]{6}$/i.test(p.color || '') ? ` style="--c:${p.color}"` : '');
+const arr = (v) => (Array.isArray(v) ? v.filter(Boolean) : []);
+
 function projectCard(p, i, base) {
   const url = safeUrl(p.url);
   const gallery = p.gallery?.length > 0;
   const id = `gallery-${i}`;
-  const title = gallery
-    ? `<button type="button" class="hit" data-gallery="${id}" aria-haspopup="dialog">${esc(p.title)}</button>`
-    : url ? `<a class="hit" href="${esc(url)}"${ext(url)}>${esc(p.title)}</a>` : esc(p.title);
-  const alt = p.fit === 'logo' ? `${p.title} logo` : `${p.title} — ${p.subtitle}`;
-  const logo = p.image && p.fit === 'logo';
-  const color = logo && /^#[0-9a-f]{6}$/i.test(p.color || '') ? ` style="--c:${p.color}"` : '';
-  const thumb = logo
-    ? `<span class="pl"><img src="${asset(p.image, base)}" alt="${esc(alt)}" width="320" height="200" loading="lazy" decoding="async"></span>`
-    : p.image
-    ? `<img src="${asset(p.image, base)}" alt="${esc(alt)}" width="${p.wide ? 1100 : 640}" height="${p.wide ? 482 : 360}" loading="lazy" decoding="async"${p.fit === 'contain' ? ' class="fit"' : ''}>`
-    : `<span class="ph" aria-hidden="true">${esc(p.title.slice(0, 2).toUpperCase())}</span>`;
+  const cats = [p.category, ...arr(p.alsoIn)].filter(Boolean).join('|');
+  const logo = (w, h) => (p.image
+    ? `<img src="${asset(p.image, base)}" alt="${esc(p.title)} logo" width="${w}" height="${h}" loading="lazy" decoding="async">`
+    : `<b aria-hidden="true">${esc(p.title.slice(0, 2).toUpperCase())}</b>`);
   const dialog = gallery ? `
 <dialog id="${id}" aria-label="${esc(p.title)} screenshots"><div class="gh"><h3>${esc(p.title)}</h3><div><button type="button" data-step="-1" aria-label="Scroll back">←</button><button type="button" data-step="1" aria-label="Scroll forward">→</button><button type="button" data-close aria-label="Close">✕</button></div></div>
 <div class="gs" tabindex="0" role="group" aria-label="Screenshots">${p.gallery.map((g) => `<img src="${asset(g.image, base)}" alt="${esc(g.alt)}" width="540" height="960" loading="lazy" decoding="async">`).join('')}</div>${url ? `<a class="back" href="${esc(url)}"${ext(url)}>Visit project ↗</a>` : ''}</dialog>` : '';
-  return `<li class="pj${p.wide ? ' wide' : ''}${url || gallery ? ' act' : ''}" data-cat="${esc(p.category)}"><div class="th${logo ? ' lg' : ''}"${color}>${thumb}<span class="t">${esc(p.category)}</span></div><div class="bd"><div><h3>${title}</h3><p>${esc(p.subtitle)}</p></div>${url || gallery ? `<span class="go" aria-hidden="true">${gallery ? '⤢' : '↗'}</span>` : ''}</div>${dialog}</li>`;
+  const tech = arr(p.tech);
+
+  if (p.featured) {
+    const shot = p.preview || p.gallery?.[0]?.image;
+    const status = [...arr(p.status).map((s) => `<li class="${statusTone(s)}">${esc(s)}</li>`), '<li>featured</li>'].join('');
+    return `<li class="wf" data-cat="${esc(cats)}"${brand(p)}>
+<div class="wv" aria-hidden="true"><span class="wl">${logo(320, 200)}</span>${shot ? `<span class="phone"><img src="${asset(shot, base)}" alt="" width="540" height="960" loading="lazy" decoding="async"></span>` : ''}</div>
+<div class="wb"><ul class="st">${status}</ul><h3>${esc(p.title)}</h3><p>${esc(p.subtitle)}</p>${arr(p.highlights).length ? `<ul class="hl">${arr(p.highlights).map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}${tech.length ? `<ul class="chips">${tech.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}${url || gallery ? `<div class="wbtn">${url ? `<a class="b1" href="${esc(url)}"${ext(url)}>Live site ↗</a>` : ''}${gallery ? `<button type="button" class="b2" data-gallery="${id}" aria-haspopup="dialog">Screenshots ⤢</button>` : ''}</div>` : ''}</div>${dialog}</li>`;
+  }
+
+  const title = gallery
+    ? `<button type="button" class="hit" data-gallery="${id}" aria-haspopup="dialog">${esc(p.title)}</button>`
+    : url ? `<a class="hit" href="${esc(url)}"${ext(url)}>${esc(p.title)}</a>` : esc(p.title);
+  const tag = [p.category, p.visibility].filter(Boolean).map(esc).join(' · ');
+  const dot = tech.length && techColor(tech[0]) ? ` style="--d:${techColor(tech[0])}"` : '';
+  return `<li class="wk${url || gallery ? ' act' : ''}" data-cat="${esc(cats)}"${brand(p)}><div class="wh"><span class="wl">${logo(160, 100)}</span><div><h3>${title}</h3>${tag ? `<span class="tag">${tag}</span>` : ''}</div></div><p>${esc(p.subtitle)}</p><div class="ft">${tech.length ? `<ul class="tech">${tech.map((t, n) => `<li${n === 0 ? ` class="dot"${dot}` : ''}>${esc(t)}</li>`).join('')}</ul>` : '<span></span>'}${url || gallery ? `<span class="go" aria-hidden="true">${gallery ? '⤢' : '↗'}</span>` : ''}</div>${dialog}</li>`;
 }
 
 const timeline = (items) => `<ol class="tl">${items.map((t) => `<li class="ti${t.current ? ' now' : ''}"><span class="y">${esc(t.period)}</span><h4>${esc(t.title)}</h4><p>${esc(t.text)}</p></li>`).join('')}</ol>`;
@@ -269,7 +289,7 @@ ${heading(d.resume)}
 <section id="portfolio"><div class="w">
 ${heading(d.portfolio, `<div class="filters" role="group" aria-label="Filter projects"><button type="button" class="on" aria-pressed="true" data-filter="">All</button>${d.portfolio.categories.map((c) => `<button type="button" aria-pressed="false" data-filter="${esc(c)}">${esc(c)}</button>`).join('')}</div>`)}
 <ul class="pg">
-${projects.map((x, i) => projectCard(x, i, base)).join('\n')}
+${projects.map((x, i) => [x, i]).sort(([a], [b]) => !!b.featured - !!a.featured).map(([x, i]) => projectCard(x, i, base)).join('\n')}
 </ul>
 </div></section>
 
